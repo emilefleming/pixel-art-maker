@@ -1,0 +1,42 @@
+body, html {
+  margin: 0;
+}
+
+
+aside {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  background-color: rgba(0, 0, 0, .85);
+  z-index: 1;
+}
+
+main {
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  text-align: left;
+  top: 0;
+  width: auto;
+}
+
+.artBoard {
+  height: 100%;
+  overflow: scroll;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.row div {
+  border: 0.5px solid #EEE;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
