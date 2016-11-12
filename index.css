@@ -52,10 +52,13 @@ table {
 
 /* BEGIN CUSTOM STYLES */
 
-
-
+@font-face {
+    font-family: Raleway;
+    src: url(font/Raleway-Medium.ttf);
+}
 
 body, html {
+  font-family: Raleway;
   margin: 0;
 }
 
@@ -64,6 +67,10 @@ aside {
   background-color: #222;
   bottom: 0;
   box-sizing: border-box;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   left: 0;
   position: absolute;
   top: 0;
@@ -83,6 +90,13 @@ main {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+h3 {
+  color: #AAA;
+  font-size: 10px;
+  padding: 15px 0  7px 0;
+  text-align: center;
 }
 
 .artBoard {
