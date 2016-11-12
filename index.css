@@ -99,6 +99,22 @@ h3 {
   text-align: center;
 }
 
+header {
+  align-items: center;
+  border-bottom: 1px solid #AAA;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: center;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+
+}
+
 .artBoard {
   box-shadow: 2px 2px 10px #333;
 }
@@ -143,7 +159,7 @@ button:focus {
   outline: none;
 }
 
-button:hover {
+button:hover, header:hover {
   background-color: #333;
   opacity: .5;
   box-shadow: inset 0 0 3px 1px rgba(10, 10, 10, .25);
