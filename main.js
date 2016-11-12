@@ -121,6 +121,14 @@
     useTool(event.target);
   }
 
+// Set recent color
+  const setRecent = function(event) {
+    if (event.target.tagName !== 'LI') {
+      return;
+    }
+    color = event.target.style.backgroundColor;
+  }
+
 // Add event listeners
   document.querySelector('body').addEventListener('mousedown', mouseState);
   document.querySelector('body').addEventListener('mouseup', mouseState);
@@ -130,4 +138,5 @@
   document.querySelector('.artBoard').addEventListener('mouseover', dragPaint);
   document.getElementById('colorTool').addEventListener('click', openPicker);
   document.querySelector('#colorPicker').addEventListener('input', setColor);
+  document.querySelector('#recentColors').addEventListener('click', setRecent)
 })();
