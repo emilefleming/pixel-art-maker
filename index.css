@@ -67,7 +67,7 @@ aside {
   left: 0;
   position: absolute;
   top: 0;
-  width: 100px;
+  width: 80px;
   z-index: 1;
 }
 
@@ -78,7 +78,7 @@ main {
   display: flex;
   height: 100%;
   justify-content: flex-start;
-  left: 100px;
+  left: 80px;
   overflow: scroll;
   position: absolute;
   right: 0;
@@ -99,6 +99,8 @@ main {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
+  user-drag: none;
+  user-select: none;
 }
 
 .borders div:not(.row) {
@@ -129,14 +131,33 @@ button:focus {
 
 button:hover {
   background-color: #333;
+  opacity: .5;
+  box-shadow: inset 0 0 3px 1px rgba(10, 10, 10, .25);
 }
 
 .selected {
   background-color: #EF382B;
+  box-shadow: inset 0 0 3px 1px rgba(10, 10, 10, .25);
+}
+
+.selected:hover {
+  background-color: #EF382B;
+}
+
+svg {
+  fill: white;
 }
 
 #colorTool {
   background-image: url(ico/colors.svg);
+}
+
+#eraseTool {
+  background-image: url(ico/eraser.svg);
+}
+
+#fillTool {
+  background-image: url(ico/fill.svg);
 }
 
 #drawTool {

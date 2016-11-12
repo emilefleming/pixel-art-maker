@@ -2,6 +2,9 @@
   'use strict';
   let color = '#EF382B';
   let activeTool = 'draw';
+  const colored = [];
+  let mouseDown = false;
+
 // Build a grid of pixels
   const makeBoard = function(height, width) {
     const artBoard = document.createElement('div');
@@ -19,46 +22,112 @@
   }
   document.querySelector('main').appendChild(makeBoard(100, 100));
 
-
-  const setColor = function() {
-    color = document.getElementById("colorPicker").value;
-  }
-// Recolor pixels
-  const recolor = function(pixel) {
-    pixel.style.backgroundColor = color;
-    pixel.style.border = "0";
-  };
-
 // Set tool
-  const setTool = function(tool) {
-    activeTool = tool;
+  const setTool = function(event) {
+    const target = event.target;
+    if (target.tagName !== 'BUTTON' || target.id === 'colorTool') {
+      return;
+    }
+    showTool(target);
+    switch (target.id) {
+      case "drawTool":
+        activeTool = 'draw';
+        return;
+      case "eraseTool" :
+        activeTool = 'eraser';
+        return;
+      case "fillTool" :
+        activeTool = 'fill';
+        return;
+      default: console.log(`${event.target.id} isn't a tool but it definitely should be.`);
+    }
+  }
+
+// Show selected tool
+
+  const showTool = function(target) {
+    const buttons = document.getElementsByTagName('button');
+    for (const button of buttons) {
+      button.classList.remove('selected');
+    }
+    target.classList.add('selected');
   }
 
 // Do action with tool
-  const useTool = function(event) {
-    const target = event.target;
+  const useTool = function(target) {
     if (target.className === 'artBoard' || target.className === 'row') {
       return;
     }
     if (activeTool === 'draw') {
       recolor(target);
-    } else if (activeTool === 'erase') {
+    } else if (activeTool === 'eraser') {
       erase(target);
+    } else if (activeTool === 'fill') {
+      fill(target);
     }
   }
 
-// Color picker functions
+// Trigger color picker
   const openPicker = function() {
-    const elem = document.getElementById('colorPicker');
-    if(elem) {
-        elem.click();
+    document.getElementById('colorPicker').click();
+  }
+
+// Set Color
+  const setColor = function() {
+    color = document.getElementById("colorPicker").value;
+  }
+
+// Recolor pixel
+  const recolor = function(pixel) {
+    pixel.style.backgroundColor = color;
+    pixel.style.borderColor = color;
+    colored.push(pixel);
+  };
+
+// Erase pixel
+  const erase = function(pixel) {
+    pixel.style.backgroundColor = null;
+    pixel.style.borderColor = '#DDD';
+  }
+
+// Fill pixels
+  const fill = function(target) {
+    if (target.style.backgroundColor === '') {
+      return;
+    }
+    const oldColor = target.style.backgroundColor;
+    for (const pixel of colored) {
+      if (pixel.style.backgroundColor === oldColor) {
+        pixel.style.backgroundColor = color;
+        pixel.style.borderColor = color;
+      }
     }
   }
 
+// Drag paint functions
+
+  const mouseState = function(event) {
+    if (event.type === 'mousedown') {
+      mouseDown = true;
+      return;
+    }
+    mouseDown = false;
+  }
+
+  const dragPaint = function(event) {
+    if (!mouseDown) {
+      return;
+    }
+    useTool(event.target);
+  }
 
 // Add event listeners
-  document.querySelector('.artBoard').addEventListener('click', useTool);
-  document.getElementById('drawTool').addEventListener('click', function(){setTool('draw')});
+  document.querySelector('body').addEventListener('mousedown', mouseState);
+  document.querySelector('body').addEventListener('mouseup', mouseState);
+  document.getElementById('tools').addEventListener('click', setTool);
+  document.querySelector('.artBoard').addEventListener('click', function(){useTool(event.target)});
+  document.querySelector('.artBoard').addEventListener('mouseout', dragPaint);
+  document.querySelector('.artBoard').addEventListener('mouseover', dragPaint);
   document.getElementById('colorTool').addEventListener('click', openPicker);
-  document.querySelector('#colorPicker').addEventListener('input', setColor)
+  document.querySelector('#colorPicker').addEventListener('input', setColor);
 })();
