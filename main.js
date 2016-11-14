@@ -28,6 +28,11 @@
     if (target.tagName !== 'BUTTON' || target.id === 'colorTool') {
       return;
     }
+    if (target.id === 'gridToggle') {
+      target.classList.toggle('off');
+      document.querySelector('.artBoard').classList.toggle('borders');
+      return
+    }
     showTool(target);
     switch (target.id) {
       case "drawTool":
@@ -41,6 +46,7 @@
         return;
       case "eyedropperTool" :
         activeTool = 'eyedropper';
+        return;
       default: console.log(`${event.target.id} isn't a tool but it definitely should be.`);
     }
   }

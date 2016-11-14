@@ -128,13 +128,18 @@ header {
 }
 
 .row {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
+  height: 20px;
+}
+
+.borders .row {
+  border-bottom: 1px solid #222;
 }
 
 .row div {
   box-sizing: border-box;
-  border-bottom: 1px solid #222;
   width: 20px;
   height: 20px;
   user-drag: none;
@@ -207,7 +212,15 @@ svg {
 }
 
 #eyedropperTool {
-  background-image: url(ico/eyedropper.svg);  
+  background-image: url(ico/eyedropper.svg);
+}
+
+#gridToggle {
+  background-image: url(ico/grid-off.svg);
+}
+
+#gridToggle.off {
+  background-image: url(ico/grid.svg);
 }
 
 #recentColors {
