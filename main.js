@@ -74,7 +74,7 @@
       fill(target);
     } else if (activeTool === 'eyedropper') {
       color = target.style.backgroundColor;
-      document.querySelector('header').style.backgroundColor = color;
+      document.querySelector('#logo').style.backgroundColor = color;
     }
   }
 
@@ -86,7 +86,7 @@
 // Set Color
   const setColor = function() {
     color = document.getElementById('colorPicker').value;
-    document.querySelector('header').style.backgroundColor = color;
+    document.querySelector('#logo').style.backgroundColor = color;
   }
 
 // Recolor pixel
@@ -139,7 +139,7 @@
       return;
     }
     color = event.target.style.backgroundColor;
-    document.querySelector('header').style.backgroundColor = color;
+    document.querySelector('#logo').style.backgroundColor = color;
 }
 
 // Add event listeners
