@@ -39,6 +39,8 @@
       case "fillTool" :
         activeTool = 'fill';
         return;
+      case "eyedropperTool" :
+        activeTool = 'eyedropper';
       default: console.log(`${event.target.id} isn't a tool but it definitely should be.`);
     }
   }
@@ -55,8 +57,6 @@
 
 // Do action with tool
   const useTool = function(target) {
-    console.log(target);
-    console.log(activeTool);
     if (target.classList.contains('artBoard') || target.classList.contains('row')) {
       return;
     }
@@ -66,6 +66,9 @@
       erase(target);
     } else if (activeTool === 'fill') {
       fill(target);
+    } else if (activeTool === 'eyedropper') {
+      color = target.style.backgroundColor;
+      document.querySelector('header').style.backgroundColor = color;
     }
   }
 

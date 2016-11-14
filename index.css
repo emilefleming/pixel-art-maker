@@ -141,6 +141,10 @@ header {
   user-select: none;
 }
 
+.row div:hover {
+  background-color: #888 !important;
+}
+
 .borders div:not(.row) {
   border-right: 1px solid #222;
   box-sizing: border-box;
@@ -200,6 +204,10 @@ svg {
 
 #drawTool {
   background-image: url(ico/draw.svg);
+}
+
+#eyedropperTool {
+  background-image: url(ico/eyedropper.svg);  
 }
 
 #recentColors {
