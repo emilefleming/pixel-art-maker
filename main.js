@@ -144,7 +144,7 @@
 
 // Add event listeners
   document.querySelector('body').addEventListener('mousedown', mouseState);
-  document.querySelector('body').addEventListener('mouseup', mouseState);
+  document.addEventListener('mouseup', mouseState);
   document.getElementById('tools').addEventListener('click', setTool);
   document.querySelector('.artBoard').addEventListener('click', function(){useTool(event.target)});
   document.querySelector('.artBoard').addEventListener('mouseout', dragPaint);
