@@ -55,7 +55,9 @@
 
 // Do action with tool
   const useTool = function(target) {
-    if (target.className === 'artBoard' || target.className === 'row') {
+    console.log(target);
+    console.log(activeTool);
+    if (target.classList.contains('artBoard') || target.classList.contains('row')) {
       return;
     }
     if (activeTool === 'draw') {
@@ -74,7 +76,8 @@
 
 // Set Color
   const setColor = function() {
-    color = document.getElementById("colorPicker").value;
+    color = document.getElementById('colorPicker').value;
+    document.querySelector('header').style.backgroundColor = color;
   }
 
 // Recolor pixel
@@ -87,7 +90,7 @@
 // Erase pixel
   const erase = function(pixel) {
     pixel.style.backgroundColor = null;
-    pixel.style.borderColor = '#DDD';
+    pixel.style.borderColor = '#222';
   }
 
 // Fill pixels
@@ -127,7 +130,8 @@
       return;
     }
     color = event.target.style.backgroundColor;
-  }
+    document.querySelector('header').style.backgroundColor = color;
+}
 
 // Add event listeners
   document.querySelector('body').addEventListener('mousedown', mouseState);
